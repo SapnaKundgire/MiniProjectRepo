@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: small-rest-api
+spec:
+  selector:
+    matchLabels:
+      app: small-rest-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: small-rest-api
+    spec:
+      containers:
+        - name: small-rest-api
+          image: dock123sapna/small-rest-api
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_URL
+              value: jdbc:mysql://localhost:3306/travelreport
